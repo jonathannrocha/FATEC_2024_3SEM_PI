@@ -129,3 +129,12 @@ STATIC_ROOT = os.path.join('static')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS=[
+    'user.authentication.CPFBackend',  # Backend personalizado
+    'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
+]
+
+LOGIN_URL = 'user_login'
+LOGIN_REDIRECT_URL = 'dashboard'
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
