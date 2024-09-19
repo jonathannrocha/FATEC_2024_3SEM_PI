@@ -138,3 +138,13 @@ AUTHENTICATION_BACKENDS=[
 LOGIN_URL = 'user_login'
 LOGIN_REDIRECT_URL = 'dashboard'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+    # Expira a sessão ao fechar o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Define o tempo de expiração da sessão (opcional)
+SESSION_COOKIE_AGE = 3600  # 1 hora
+
+# Garante que a sessão seja salva apenas quando houver modificações
+SESSION_SAVE_EVERY_REQUEST = False
+
