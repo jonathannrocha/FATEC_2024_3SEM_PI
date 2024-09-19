@@ -1,10 +1,9 @@
-# forms.py
 from django import forms
 from .models import User
 from django.forms import PasswordInput
 
 class UserForm(forms.ModelForm):
-    senha = forms.CharField(widget=PasswordInput(), max_length=11)
+    senha = forms.CharField(widget=PasswordInput(), max_length=128)
 
     class Meta:
         model = User
