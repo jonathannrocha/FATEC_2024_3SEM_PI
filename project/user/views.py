@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import check_password
 from django.contrib import messages
 from .models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout
 
 def user_login(request):
@@ -37,7 +38,7 @@ def user_login(request):
         form = LoginForm()
 
     print(f"ID da Sessão fora do POST: {request.session.session_key}")
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login1.html', {'form': form})
 
 
 def cadastrarUsuario(request):
@@ -54,17 +55,20 @@ def cadastrarUsuario(request):
     return render(request, 'cadastro.html', {'form': form})
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index1.html')
 
 @login_required
+@never_cache
 def dashboard(request):
-    print(f"Usuário autenticado no dashboard: {request.user.is_authenticated}")
-    print(f"ID da Sessão no dashboard: {request.session.session_key}")
+    return render(request, 'dashboard1.html')
+
+    # print(f"Usuário autenticado no dashboard: {request.user.is_authenticated}")
+    # print(f"ID da Sessão no dashboard: {request.session.session_key}")
     
-    if request.user.is_authenticated:
-        return HttpResponse(f"Bem-vindo ao dashboard, {request.user.nome}! Sessão ativa: {request.session.session_key}")
-    else:
-        return HttpResponse("Usuário não autenticado")
+    # if request.user.is_authenticated:
+    #     return HttpResponse(f"Bem-vindo ao dashboard, {request.user.nome}! Sessão ativa: {request.session.session_key}")
+    # else:
+    #     return HttpResponse("Usuário não autenticado")
 
 def logoutView(request):
     logout(request)
