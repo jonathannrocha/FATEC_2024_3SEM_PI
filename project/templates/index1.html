@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>InovaDev Consultoria</title>
     <meta name="viewport" content="width=device-width, inital-scale=1.0" >
-    <link rel="stylesheet" href="./static/css/swiper.min.css">
-    <link rel="stylesheet" href="./static/css/styleindex.css">
-    <link rel="stylesheet" href="./static/css/responsivo.css">
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleindex.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsivo.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     </head>
   <body>
     <main class="apresentacao">
@@ -24,7 +24,7 @@
         <nav class="menu" id="menu">
           <ul>
             <li class="menu__li">
-              <a href="index1.html" class="menu__link">Inicio</a>
+              <a href="{% url 'user_login' %}" class="menu__link">Entrar</a>
             </li>
             <li class="menu__li">
               <a href="novidades.html" class="menu__link">Novidades</a>
@@ -84,7 +84,7 @@
         <div class="center">
           <div class="box-ilustracao">
             <div class="box-ilustracao__content">
-              <img src="./static/img/ilustracao.png" alt="" class="img-responsiva">
+              <img src="{% static '/img/ilustracao.png' %}" alt="" class="img-responsiva"> 
             </div>
           </div>
           <div class="about-box">
@@ -151,7 +151,7 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide box-testemunha">
                 <div class="testemunha-imagem">
-                  <img src="./static/img/john-doe.png" alt="">
+                  <img src="{% static 'img/john-doe.png' %}" alt=""> 
                 </div>
                 <span class="testemunha-nome">Luiz Henrique</span>
                 <span class="testemunha-profissao">Front-End</span>
@@ -159,7 +159,7 @@
               </div>
               <div class="swiper-slide box-testemunha">
                 <div class="testemunha-imagem">
-                  <img src="./static/img/john-doe.png" alt="">
+                  <img src="{% static 'img/john-doe.png' %}" alt="">
                 </div>
                 <span class="testemunha-nome">Jonathan</span>
                 <span class="testemunha-profissao">Java-Developer</span>
@@ -167,7 +167,7 @@
               </div>
               <div class="swiper-slide box-testemunha">
                 <div class="testemunha-imagem">
-                  <img src="./static/img/john-doe.png" alt="">
+                  <img src="{% static 'img/john-doe.png' %}" alt="">
                 </div>
                 <span class="testemunha-nome">Kalliel</span>
                 <span class="testemunha-profissao">Back-End</span>
@@ -175,7 +175,7 @@
               </div>
               <div class="swiper-slide box-testemunha">
                 <div class="testemunha-imagem">
-                  <img src="./static/img/john-doe.png" alt="">
+                  <img src="{% static 'img/john-doe.png' %}" alt="">
                 </div>
                 <span class="testemunha-nome">Marco</span>
                 <span class="testemunha-profissao">Full-Stack</span>
@@ -198,7 +198,7 @@
           <h5 class="subtitle"></h5>
           <div class="our-story__content">
             <div class="our-story__box">
-              <img class="our-story__icon" src="./static/img/passarinho.png" alt="">
+              <img class="our-story__icon" src="{% static 'img/passarinho.png' %}" alt="">
               <div class="our-story__wrapper">
                 <h6 class="our-story__title">Quem somos nós?</h6>
                 <p class="our-story__text">Somos uma plataforma de mentoria individual para programadores</b>, conectando <b>iniciantes</b> e <b>experientes</b> a <b>especialistas</b> através de <b>videochamadas</b>.<br>
@@ -208,7 +208,7 @@
 
             </div>
             <div class="our-story__box">
-              <img class="our-story__icon" src="./static/img/mao.png" alt="">
+              <img class="our-story__icon" src="{% static 'img/mao.png' %}" alt=""> 
               <div class="our-story__wrapper">
                 <h6 class="our-story__title">Por que do Nome?</h6>
                 <p class="our-story__text">"InovaDev Consultoria" combina a ideia de inovação com desenvolvimento, criando uma imagem de uma empresa que está na vanguarda das soluções tecnológicas e que oferece expertise para ajudar seus clientes a evoluir e inovar no campo da programação. O nome transmite um compromisso com a modernidade, a criatividade e a excellence no desenvolvimento de software.</p>
@@ -302,9 +302,9 @@
 
     </main>
 
-    <script type="text/javascript" src="./static/js/swiper.min.js"></script>
-    <script type="text/javascript" src="./static/js/posts.js"></script>
-    <script type="text/javascript" src="./static/js/home.js"></script>
-    <script type="text/javascript" src="./static/js/menu.js"></script>
+    <script type="text/javascript" src="{% static 'js/swiper.min.js' %}"></script> 
+    <script type="text/javascript" src="{% static '/js/posts.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'js/home.js' %}"></script> 
+    <script type="text/javascript" src="{% static 'js/menu.js' %}"></script> 
   </body>
 </html>
