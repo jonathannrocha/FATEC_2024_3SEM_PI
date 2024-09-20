@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 class UserManager(BaseUserManager):
@@ -13,10 +13,16 @@ class UserManager(BaseUserManager):
     def create_superuser(self, cpf, senha=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('O superusuário precisa ter is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('O superusuário precisa ter is_superuser=True.')
+
         return self.create_user(cpf, senha, **extra_fields)
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=11, unique=True, primary_key=True)
     gmail = models.EmailField(max_length=100, unique=True)
