@@ -40,7 +40,6 @@ def user_login(request):
     print(f"ID da Sessão fora do POST: {request.session.session_key}")
     return render(request, 'login1.html', {'form': form})
 
-
 def cadastrarUsuario(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
@@ -49,10 +48,14 @@ def cadastrarUsuario(request):
             user.set_password(form.cleaned_data['senha'])
             user.save()
             return redirect('index')
+        else:
+            print(form.errors)
+            messages.error(request, "Erro no cadastro. Verifique os dados.")
     else:
         form = UserForm()
 
     return render(request, 'cadastro.html', {'form': form})
+
 
 def index(request):
     return render(request, 'index1.html')
