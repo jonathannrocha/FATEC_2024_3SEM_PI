@@ -52,6 +52,6 @@ Para mais informações ou dúvidas, entre em contato conosco:
 - KALLIEL MARCOS PINHEIRO-https://github.com/Kallielmpinheiro
 - LUIZ HENRIQUE SIMIONATO VICENTE-https://github.com/luizsimi
 - JONATHAN DE SANTANA ROCHA-https://github.com/jonathannrocha
-- Marco-
+- MARCO AMORIM-https://github.com/MarquinhoAmorim
 
 Agradecemos por seu interesse no Projeto InovaDev Consultoria!
