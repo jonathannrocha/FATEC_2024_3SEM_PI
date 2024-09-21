@@ -6,19 +6,23 @@ class UserManager(BaseUserManager):
         if not cpf:
             raise ValueError('O CPF é obrigatório')
         user = self.model(cpf=cpf, **extra_fields)
-        user.set_password(senha)
+        if senha:
+            user.set_password(senha)
+        else:
+            raise ValueError('Uma senha é obrigatória para todos os usuários.')
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, cpf, senha=None, **extra_fields):
+    def create_superuser(self, cpf, **extra_fields):
+        senha = extra_fields.pop('password', None)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
-
+        if not senha:
+            raise ValueError('O superusuário precisa de uma senha.')
         if extra_fields.get('is_staff') is not True:
             raise ValueError('O superusuário precisa ter is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('O superusuário precisa ter is_superuser=True.')
-
         return self.create_user(cpf, senha, **extra_fields)
 
 
