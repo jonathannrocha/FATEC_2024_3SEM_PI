@@ -83,6 +83,14 @@ DATABASES = {
         'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '5432',
+    },
+     'userPerfil':
+     {'ENGINE': 'djongo',
+      'NAME':'userPerfil',
+      'ENFORCE_SCHEMA': False,
+      'CLIENT':{
+          'host':'localhost:27017'
+      }
     }
 }
 
