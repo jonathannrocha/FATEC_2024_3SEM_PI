@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from mongoengine import Document, StringField, ListField, ReferenceField
 
 class UserManager(BaseUserManager):
     def create_user(self, cpf, senha=None, **extra_fields):
@@ -47,3 +48,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.cpf
+    
+class Perfil(Document):
+    cpf = StringField(required=True)
+    nome = StringField(max_length=128)
+    sobre = StringField(max_length=255)
+    nivelExperiencia = StringField(max_length=255)
+    nivel = StringField(max_length=298)
+    certificacoes = ListField(StringField(max_length=221))
+    habilidades = ListField(StringField(max_length=211))
+    redesSociais = ListField(StringField(max_length=100))
+ 

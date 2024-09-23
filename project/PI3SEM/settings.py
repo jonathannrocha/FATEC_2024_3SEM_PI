@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'PI3SEM.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'PI3SEM',
         'USER': 'postgres',
@@ -84,15 +84,15 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     },
-     'userPerfil':
-     {'ENGINE': 'djongo',
-      'NAME':'userPerfil',
-      'ENFORCE_SCHEMA': False,
-      'CLIENT':{
-          'host':'localhost:27017'
-      }
+    'userPerfil': {
+        'ENGINE': 'djongo',
+        'NAME': 'userPerfil',
+        'CLIENT': {
+            'host': 'localhost:27017',
+        }
     }
 }
+
 
 
 # Password validation
