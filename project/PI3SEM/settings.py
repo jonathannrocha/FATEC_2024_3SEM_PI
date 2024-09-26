@@ -38,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user'
+    
+    # Apps
+    'user',
+    
+    #silk
+    'silk'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    #silk    
+    'silk.middleware.SilkyMiddleware',    
 ]
 
 ROOT_URLCONF = 'PI3SEM.urls'
