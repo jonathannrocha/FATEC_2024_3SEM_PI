@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserForm, LoginForm
+from .forms import UserForm, LoginForm, PerfilForm
 from django.contrib.auth import login as auth_login, authenticate, login as auth_login
 from django.contrib.auth.hashers import check_password
 from django.contrib import messages
-from .models import User
+from .models import User, Perfil
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout
+from mongoengine import connect
+
+# Temporario
+connect('userPerfil', host='localhost', port=27017)
 
 def user_login(request):
     if request.method == 'POST':
@@ -47,6 +51,21 @@ def cadastrarUsuario(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['senha'])
             user.save()
+
+            # Criar o perfil associado ao usuário
+            perfil = Perfil(
+                cpf=user.cpf,
+                nome='',
+                sobre='',
+                nivelExperiencia='',
+                nivel='',
+                certificacoes=[],
+                habilidades=[],
+                redesSociais=[]
+            )
+            perfil.save()
+
+            messages.success(request, "Usuário cadastrado com sucesso!")
             return redirect('index')
         else:
             print(form.errors)
@@ -58,7 +77,6 @@ def cadastrarUsuario(request):
 
 def contato( request ):
     return render( request, 'contato.html')
-
 
 def novidades( request ):
     return render( request, 'novidades.html')
