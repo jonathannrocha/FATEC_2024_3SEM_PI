@@ -1,19 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-br" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>InovaDev</title>
-    <link rel="stylesheet" href="./static/css/swiper.min.css">
-    <link rel="stylesheet" href="./static/css/styleindex.css">
+
+    <link rel="stylesheet" href="{% static '/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/styleindex.css' %}">
+    <link rel="stylesheet" href="{% static '/css/stylecontato.css' %}">
+    <link rel="stylesheet" href="{% static '/css/responsivo.css' %}">
+
+
+
+
+    <!-- <link rel="stylesheet" href="./static/css/styleindex.css">
     <link rel="stylesheet" href="./static/css/stylecontato.css">
-    <link rel="stylesheet" href="./static/css/responsivo.css">
+    <link rel="stylesheet" href="./static/css/responsivo.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   </head>
   <body>
     <main class="apresentacao">
       <div class="center">
-        <a href="index1.html" class="logo">
+        <a href="/" class="logo">
         </a>
         <div class="">
           <a href="#" id="menu-mobile">
@@ -25,13 +34,13 @@
         <nav class="menu" id="menu">
           <ul>
             <li class="menu__li">
-              <a href="index1.html" class="menu__link">Inicio</a>
+              <a href="/" class="menu__link">Inicio</a>
             </li>
             <li class="menu__li">
-              <a href="novidades.html" class="menu__link">Novidades</a>
+              <a href="/novidades" class="menu__link">Novidades</a>
             </li>
             <li class="menu__li">
-              <a href="contato.html" class="menu__link">Contato</a>
+              <a href="" class="menu__link">Contato</a>
             </li>
           </ul>
         </nav>

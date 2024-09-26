@@ -4,13 +4,23 @@ from django.forms import PasswordInput
 
 class UserForm(forms.ModelForm):
     senha = forms.CharField(widget=PasswordInput(), max_length=128)
-
+ 
     class Meta:
-        model = User
+        model = User     
         fields = ['nome', 'cpf', 'senha', 'gmail', 'telefone', 'dataNascimento', 'typeUser']
+         
+
         widgets = {
+            'nome': forms.TextInput( attrs={'placeholder': 'nome completo'}),
+            'cpf': forms.TextInput( attrs={'placeholder': 'cpf'}),
+            'gmail': forms.EmailInput( attrs={ 'placeholder': 'emaiil'}),
+            'telefone': forms.NumberInput( attrs={ 'placeholder': 'Telefone'}),
             'dataNascimento': forms.DateInput(attrs={'type': 'date'}),
+            'typeUser': forms.Select( ),
+            'senha': forms.PasswordInput( attrs={'placeholder': 'senha'})
         }
+
+   
         
 class LoginForm(forms.Form):
     cpf = forms.CharField(max_length=11, label="CPF")

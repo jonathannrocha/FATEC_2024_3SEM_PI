@@ -34,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     telefone = models.CharField(max_length=15)
     dataNascimento = models.DateField(null=True, blank=True)
     typeUser = models.CharField(max_length=10, choices=[
-        ('admin', 'Admin'),
+        # ('admin', 'Admin'),
         ('mentor', 'Mentor'),
         ('mentorado', 'Mentorado')
     ], default='mentorado')
