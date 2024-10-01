@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('silk/', include('silk.urls', namespace='silk')),
     path('',include('user.urls')),
+    path('agendamentos/', include('scheduling.urls')),
     path('admin/', admin.site.urls),
 ]
