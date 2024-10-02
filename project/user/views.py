@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout
 from mongoengine import connect
+from database.db import connectMongoDB
 
-# Temporario
-connect('userPerfil', host='localhost', port=27017)
+connectMongoDB()
 
 def user_login(request):
     if request.method == 'POST':
