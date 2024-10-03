@@ -22,4 +22,5 @@ urlpatterns = [
     path('',include('user.urls')),
     path('agendamentos/', include('scheduling.urls')),
     path('admin/', admin.site.urls),
+    path('videochamadas/', include('communication.urls')),
 ]
