@@ -42,7 +42,7 @@ def user_login(request):
         form = LoginForm()
 
     print(f"ID da Sessão fora do POST: {request.session.session_key}")
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'user/login.html', {'form': form})
 
 def cadastrarUsuario(request):
     if request.method == 'POST':
@@ -73,7 +73,7 @@ def cadastrarUsuario(request):
     else:
         form = UserForm()
 
-    return render(request, 'cadastro.html', {'form': form})
+    return render(request, 'user/cadastro.html', {'form': form})
 
 def contato( request ):
     return render( request, 'contato.html')
@@ -82,12 +82,12 @@ def novidades( request ):
     return render( request, 'novidades.html')
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'user/index.html')
 
 @login_required
 @never_cache
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    return render(request, 'user/dashboard.html')
 
     # print(f"Usuário autenticado no dashboard: {request.user.is_authenticated}")
     # print(f"ID da Sessão no dashboard: {request.session.session_key}")

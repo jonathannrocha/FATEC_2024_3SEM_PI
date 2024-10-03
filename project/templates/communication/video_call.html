@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videochamada</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src='https://meet.jit.si/external_api.js'></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Videochamada</h2>
+        <div id="jitsi-meet" class="border rounded shadow-sm mb-3"></div>
+        <div class="text-center">
+            <button id="shareScreen" class="btn btn-success btn-lg mt-3">Compartilhar Tela</button>
+            <button id="endCall" class="btn btn-danger btn-lg mt-3">Sair da Chamada</button>
+            <button id="inviteButton" class="btn btn-primary btn-lg mt-3">Convidar</button>
+            <input type="text" id="inviteLink" class="form-control mt-3" readonly style="display:none;">
+        </div>
+    </div>
+
+    <script>
+        const domain = 'meet.jit.si';
+        const roomName = 'NomeDaSala';
+        const options = {
+            roomName: roomName,
+            width: '100%',
+            height: 600,
+            parentNode: document.querySelector('#jitsi-meet'),
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
+
+        document.getElementById('shareScreen').onclick = function() {
+            api.executeCommand('toggleShareScreen');
+        };
+
+        document.getElementById('inviteButton').onclick = function() {
+            const inviteLink = `https://meet.jit.si/${roomName}`;
+            const inviteInput = document.getElementById('inviteLink');
+            inviteInput.value = inviteLink;
+            inviteInput.style.display = 'block';
+            inviteInput.select();
+            document.execCommand('copy');
+            alert('Link de convite copiado para a área de transferência!');
+        };
+
+        document.getElementById('endCall').onclick = function() {
+            api.dispose();
+            window.location.href = "{% url 'index' %}";
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
