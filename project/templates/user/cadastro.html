@@ -74,6 +74,13 @@
                     <div class="continue-button">
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </div>
+                    <div class=errors>
+                        {% if messages %}
+                                {% for message in messages %}
+                                    <span >{{ message }}</span>
+                                {% endfor %}
+                        {% endif %}
+                    </div>
                 </form>
             </div>
         </div>

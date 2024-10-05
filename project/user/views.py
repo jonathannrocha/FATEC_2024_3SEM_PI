@@ -87,15 +87,15 @@ def index(request):
 @login_required
 @never_cache
 def dashboard(request):
-    return render(request, 'user/dashboard.html')
+    user = User
+    return render(request, 'user/dashbord_home.html', { user: user  })
 
-    # print(f"Usuário autenticado no dashboard: {request.user.is_authenticated}")
-    # print(f"ID da Sessão no dashboard: {request.session.session_key}")
-    
-    # if request.user.is_authenticated:
-    #     return HttpResponse(f"Bem-vindo ao dashboard, {request.user.nome}! Sessão ativa: {request.session.session_key}")
-    # else:
-    #     return HttpResponse("Usuário não autenticado")
+@login_required
+@never_cache
+def dashbord_conta(request):
+    form = UserForm()
+    user = User
+    return render( request, 'user/dashbord_conta.html', { 'form':form, user:user  })
 
 def logoutView(request):
     logout(request)
