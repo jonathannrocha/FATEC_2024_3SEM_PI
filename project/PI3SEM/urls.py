@@ -19,8 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('silk/', include('silk.urls', namespace='silk')),
-    path('',include('user.urls')),
-    path('agendamentos/', include('scheduling.urls')),
+    path('',include('user.urls', namespace='user')),
+    path('agendamentos/', include('scheduling.urls', namespace='agendamentos')),
     path('admin/', admin.site.urls),
-    path('videochamadas/', include('communication.urls')),
+    path('videochamadas/', include('communication.urls', namespace='videochamadas')),
 ]

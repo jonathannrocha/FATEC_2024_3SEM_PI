@@ -13,17 +13,16 @@
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors.css" />
-    <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendors.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 </head>
 
 <body>
-    <!-- begin app -->
+    
     <div class="app">
-        <!-- begin app-wrap -->
+        
         <div class="app-wrap">
-            <!-- begin pre-loader -->
+            
             <div class="loader">
                 <div class="h-100 d-flex justify-content-center">
                     <div class="align-self-center">
@@ -31,13 +30,12 @@
                     </div>
                 </div>
             </div>
-            <!-- end pre-loader -->
-            <!-- begin app-header -->
+            
             <header class="app-header top-bar">
-                <!-- begin navbar -->
+                
                 <nav class="navbar navbar-expand-md">
 
-                    <!-- begin navbar-header -->
+                    
                     <div class="navbar-header d-flex align-items-center">
                         <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
                         <a class="navbar-brand" href="dashboard.html">
@@ -50,8 +48,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="ti ti-align-left"></i>
                     </button>
-                    <!-- end navbar-header -->
-                    <!-- begin navigation -->
+    
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="navigation d-flex">
                             <ul class="navbar-nav nav-left">
@@ -59,27 +56,26 @@
                                     <a href="javascript:void(0)" class="nav-link sidebar-toggle">
                                         <i class="ti ti-align-right"></i>
                                     </a>
-                                </li>
-                                <li class="nav-item"></li>
-                                    <a class="nav-link search" href="javascript:void(0)">
-                                        <i class="ti ti-search"></i>
-                                    </a>
-                                    <div class="search-wrapper">
-                                        <div class="close-btn">
-                                            <i class="ti ti-close"></i>
+                                    <li class="nav-item">
+                                        <a class="nav-link search" href="javascript:void(0)">
+                                            <i class="ti ti-search"></i>
+                                        </a>
+                                        <div class="search-wrapper">
+                                            <div class="close-btn">
+                                                <i class="ti ti-close"></i>
+                                            </div>
+                                            <div class="search-content">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <i class="ti ti-search magnifier"></i>
+                                                        <input type="text" class="form-control autocomplete"
+                                                            placeholder="Pesquise aqui" id="autocomplete-ajax"
+                                                            autofocus="autofocus">
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="search-content">
-                                            <form>
-                                                <div class="form-group">
-                                                    <i class="ti ti-search magnifier"></i>
-                                                    <input type="text" class="form-control autocomplete"
-                                                        placeholder="Pesquise aqui" id="autocomplete-ajax"
-                                                        autofocus="autofocus">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
                             </ul>
                             <ul class="navbar-nav nav-right ml-auto">
                                 <li class="nav-item dropdown">
@@ -347,7 +343,7 @@
                                                 <div class="col">
                                                     <a class="bg-light p-3 text-center d-block" href="#">
                                                         <i class="fe fe-plus font-20 text-primary"></i>
-                                                        <span class="d-block font-13 mt-2">Novo</span>
+                                                        <span class="d-block font-13 mt-2"></span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -357,16 +353,14 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- end navigation -->
+                  
                 </nav>
-                <!-- end navbar -->
+              
             </header>
-            <!-- end app-header -->
-            <!-- begin app-container -->
             <div class="app-container">
-                <!-- begin app-nabar -->
+               
                 <aside class="app-navbar">
-                    <!-- begin sidebar-nav -->
+                    
                     <div class="sidebar-nav scrollbar scroll_light">
                         <ul class="metismenu " id="sidebarNav">
                             <li class="nav-static-title"></li>
@@ -376,10 +370,11 @@
                                     <span class="nav-title">Dashboard</span>
                                     <span class="nav-label label label-danger">1</span>
                                 </a>
-                               
+                                
                             </li>
                             <li><a href="mentorprofile.html" aria-expanded="false"><i
-                                class="ti ti-blackboard"></i><span class="nav-title">Mentorias</span></a> </li>
+                                class="nav-icon ti ti-blackboard"></i><span class="nav-title">Mentorias</span></a> </li>
+
 
                     <li>
                             <li><a href="chat.html" aria-expanded="false"><i
@@ -388,17 +383,17 @@
                                         class="nav-icon ti ti-calendar"></i><span
                                         class="nav-title">Agendamento</span></a>
                                 <ul aria-expanded="false">
-                                    <li> <a href='agendamento-mes.html'>Mês</a> </li>
-                                    <li class="active"> <a href='agendamento-semanal.html'>Semanal</a> </li>
+                                    <li class="active"> <a href="agendamento-mes.html">Mês</a> </li>
+                                    <li> <a href="agendamento-semanal.html">Semanal</a> </li>
                                 </ul>
                             </li>
- 
+
                             <li><a href="configconta.html" aria-expanded="false"><i
                                 class="nav-icon ti ti-key"></i><span class="nav-title">Perfil</span></a> </li>
                                 <li>
 
                             <li>
-
+                           
 
                             <li class="sidebar-banner p-4 bg-gradient text-center m-3 d-block rounded">
                                 <h5 class="text-white mb-1">Mentor</h5>
@@ -408,20 +403,19 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- end sidebar-nav -->
+                    
                 </aside>
-                <!-- end app-navbar -->
-                <!-- begin app-main -->
+            
                 <div class="app-main" id="main">
-                    <!-- begin container-fluid -->
+                    
                     <div class="container-fluid">
-                        <!-- begin row -->
+                       
                         <div class="row">
                             <div class="col-md-12 m-b-30">
-                                <!-- begin page title -->
+                                
                                 <div class="d-block d-sm-flex flex-nowrap align-items-center">
                                     <div class="page-title mb-2 mb-sm-0">
-                                        <h1>Calendario Semanal</h1>
+                                        <h1>Calendario</h1>
                                     </div>
                                     <div class="ml-auto d-flex align-items-center">
                                         <nav>
@@ -433,40 +427,102 @@
                                                     Calendario
                                                 </li>
                                                 <li class="breadcrumb-item active text-primary" aria-current="page">
-                                                    Calendario Semanal</li>
+                                                    Calendario Completo</li>
                                             </ol>
                                         </nav>
                                     </div>
                                 </div>
-                                <!-- end page title -->
+                                
                             </div>
                         </div>
-                        <!-- end row -->
-                        <!-- begin row -->
+                        
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card card-statistics">
                                     <div class="card-header">
                                         <div class="card-heading">
-                                            <h4 class="card-title"></h4>
+                                            <h4 class="card-title">Evento</h4>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <div class="event-list-calendar">
-                                            <div id="event-list-calendar"></div>
+                                        <div class="row">
+                                            <div class="col-xl-3">
+                                                <div id="external-events">
+                                                    <button class="btn btn-primary btn-block" data-toggle="modal"
+                                                        data-target="#eventModal">Adicionar novo Evento</button>
+                                                    <p class="mt-3">
+                                                        Arraste e solte seu Evento.
+                                                    </p>
+                                                    <div class="fc-event fc-event-primary"
+                                                        data-color="fc-event-primary"><span></span> Em Andamento</div>
+
+                                                    <div class="fc-event fc-event-danger" data-color="fc-event-danger">
+                                                        <span></span> Cancelado
+                                                    </div>
+                                                    <div class="fc-event fc-event-success"
+                                                        data-color="fc-event-success"><span></span> Finalizado</div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="defaultCheck1">
+                                                        <label class="form-check-label" for="defaultCheck1">
+                                                            Remover após Soltar
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-9">
+                                                <div class="event-calendar">
+                                                    <div id="event-calendar"></div>
+                                                </div>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- end row -->
+                        <!-- event Modal -->
+                        <div class="modal fade" id="eventModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="verticalCenterTitle">Adicionar novo Evento</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>Nome do Evento</label>
+                                                <input type="email" class="form-control" id="eventname">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Opção</label>
+                                                <select class="form-control">
+                                                    <option>Em Andamento</option>
+                                                    <option>Cancelado</option>
+                                                    <option>Finalizado</option>
+                                                </select>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Fechar</button>
+                                        <button type="button" class="btn btn-success">Salvar Aterações</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- end container-fluid -->
+                 
                 </div>
-                <!-- end app-main -->
+               
             </div>
-            <!-- end app-container -->
-            <!-- begin footer -->
+            
             <footer class="footer">
                 <div class="row">
                     <div class="col-12 col-sm-6 text-center text-sm-left">
@@ -476,18 +532,16 @@
                     </div>
                 </div>
             </footer>
-            <!-- end footer -->
+            <!-- Fim -->
         </div>
-        <!-- end app-wrap -->
+       
     </div>
-    <!-- end app -->
+    
 
-    <!-- plugins -->
-    <script src="assets/js/vendors.js"></script>
 
-    <!-- custom app -->
-    <script src="assets/js/app.js"></script>
+    <!-- JS -->
+    <script src="{% static 'js/vendors.js' %}"></script>
+    <script src="{% static 'js/app.js'%}"></script>
 </body>
-
 
 </html>

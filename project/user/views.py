@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import UserForm, LoginForm, PerfilForm
-from django.contrib.auth import login as auth_login, authenticate, login as auth_login
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth import login as auth_login, authenticate
 from django.contrib import messages
 from .models import User, Perfil
 from django.contrib.auth.decorators import login_required
@@ -16,24 +15,15 @@ connectMongoDB()
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
-
         if form.is_valid():
             cpf = form.cleaned_data.get('cpf')
             senha = form.cleaned_data.get('senha')
-
             user = authenticate(request, username=cpf, password=senha)
 
             if user is not None:
                 auth_login(request, user)
-                print(f"Usuário autenticado: {user}")
-                print(f"ID da Sessão após login: {request.session.session_key}")
-
-                if request.session.session_key:
-                    print(f"Sessão criada com sucesso: {request.session.session_key}")
-                else:
-                    print("Sessão não criada corretamente no momento do login")
-
-                return redirect('dashboard')
+                messages.success(request, "Login realizado com sucesso.")
+                return redirect('user:dashboard')
             else:
                 messages.error(request, 'CPF ou senha inválidos.')
         else:
@@ -41,7 +31,6 @@ def user_login(request):
     else:
         form = LoginForm()
 
-    print(f"ID da Sessão fora do POST: {request.session.session_key}")
     return render(request, 'user/login.html', {'form': form})
 
 def cadastrarUsuario(request):
@@ -52,7 +41,6 @@ def cadastrarUsuario(request):
             user.set_password(form.cleaned_data['senha'])
             user.save()
 
-            # Criar o perfil associado ao usuário
             perfil = Perfil(
                 cpf=user.cpf,
                 nome='',
@@ -64,39 +52,64 @@ def cadastrarUsuario(request):
                 redesSociais=[]
             )
             perfil.save()
-
             messages.success(request, "Usuário cadastrado com sucesso!")
-            return redirect('index')
+            return redirect('user:index')
         else:
-            print(form.errors)
             messages.error(request, "Erro no cadastro. Verifique os dados.")
     else:
         form = UserForm()
 
     return render(request, 'user/cadastro.html', {'form': form})
 
-def contato( request ):
-    return render( request, 'contato.html')
+def contato(request):
+    return render(request, 'contato.html')
 
-def novidades( request ):
-    return render( request, 'novidades.html')
+def novidades(request):
+    return render(request, 'novidades.html')
 
 def index(request):
     return render(request, 'user/index.html')
 
-@login_required
-@never_cache
+@login_required 
 def dashboard(request):
-    user = User
-    return render(request, 'user/dashbord_home.html', { user: user  })
+    logged_in_user = request.user
+    return render(request, 'user/dashboardHome.html', {'user': logged_in_user})
+
+@login_required
+def dashboardConta(request):
+    form = UserForm()
+    logged_in_user = request.user
+    return render(request, 'user/dashboardConta.html', {'form': form, 'user': logged_in_user})
 
 @login_required
 @never_cache
-def dashbord_conta(request):
-    form = UserForm()
-    user = User
-    return render( request, 'user/dashbord_conta.html', { 'form':form, user:user  })
+def mentorProfile(request):
+    logged_in_user = request.user
+    return render(request, 'user/mentorprofile.html', {'user': logged_in_user})
 
+@login_required
+@never_cache
+def dashboardChat(request):
+    logged_in_user = request.user
+    return render(request, 'communication/dashboardChat.html', {'user': logged_in_user})
+
+
+@login_required
+@never_cache
+def agendamentoSemanal(request):
+    logged_in_user = request.user
+    return render(request, 'scheduling/agendamentoSemanal.html', {'user': logged_in_user})
+
+
+@login_required
+@never_cache
+def agendamentoMensal(request):
+    logged_in_user = request.user
+    return render(request, 'scheduling/agendamentoMes.html', {'user': logged_in_user})
+
+@login_required
+@never_cache
 def logoutView(request):
     logout(request)
-    return redirect('user_login')
+    messages.success(request, "Você foi desconectado com sucesso.")
+    return redirect('user:user_login')
