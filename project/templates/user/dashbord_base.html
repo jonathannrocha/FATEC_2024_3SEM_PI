@@ -33,7 +33,7 @@
 
                     <div class="navbar-header d-flex align-items-center">
                         <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
-                        <a class="navbar-brand" href="{% url 'dashboard' %}">
+                        <a class="navbar-brand" href="{% url 'user:dashboard' %}">
                             <img src="{% static 'img/logo.png' %}" class="img-fluid logo-desktop" alt="logo" />
                             <img src="{% static 'img/logo-icon.png' %}" class="img-fluid logo-mobile" alt="logo" />
                         </a>
@@ -326,7 +326,7 @@
                                             </div>
                                         </div>
                                         <div class="p-4">
-                                            <a class="dropdown-item d-flex nav-link" href="{% url 'dashbord_conta' %}">
+                                            <a class="dropdown-item d-flex nav-link" href="{% url 'user:dashbord_conta' %}">
                                                 <i class="fa fa-user pr-2 text-success"></i> Perfil
                                             </a>
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
@@ -375,7 +375,7 @@
                                     <span class="nav-label label label-danger">1</span>
                                 </a>
                             </li>
-                            <li><a href="mentorprofile.html" aria-expanded="false"><i
+                            <li><a href="{% url 'user:mentorProfile' %}" aria-expanded="false"><i   
                                         class="nav-icon ti ti-blackboard"></i><span
                                         class="nav-title">Mentorias</span></a> </li>
                             <li>
@@ -393,7 +393,7 @@
 
                             </li>
 
-                            <li><a href="{% url 'dashbord_conta' %}" aria-expanded="false"><i
+                            <li><a href="{% url 'user:dashbord_conta' %}" aria-expanded="false"><i
                                         class="nav-icon ti ti-key"></i><span class="nav-title">Perfil</span></a> </li>
                             <li>
 
