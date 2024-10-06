@@ -4,12 +4,21 @@ from . import views
 app_name = 'user'
 
 urlpatterns = [
+    
     path('',views.index, name='index'),
+    
+    # User autenticação & cadastro
+    
     path('cadastro/',views.cadastrarUsuario, name="cadastro"),
     path('login/',views.user_login, name='user_login'),
     path('logout/', views.logoutView, name='logout'),
-    path('chat/',views.chat, name='chat'),
-    path('dashboard/mentorprofile/', views.mentorProfile, name='mentorProfile'),
+    
+    # dashboard
+    
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('dashbord/conta', views.dashbord_conta, name= 'dashbord_conta')
+    path('dashboard/mentorprofile/', views.mentorProfile, name='mentorProfile'),
+    path('dashboard/conta/', views.dashboardConta, name= 'dashboardConta'),
+    path('dashboard/chat/',views.dashboardChat, name='dashboardChat'),
+    path('dashboard/agendamentosemanal/',views.agendamentoSemanal, name='agendamentoSemanal'),
+    path('dashboard/agendamentomensal/',views.agendamentoMensal, name='agendamentoMensal'),
 ]

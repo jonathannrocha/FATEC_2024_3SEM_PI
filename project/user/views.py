@@ -73,13 +73,13 @@ def index(request):
 @login_required 
 def dashboard(request):
     logged_in_user = request.user
-    return render(request, 'user/dashbord_home.html', {'user': logged_in_user})
+    return render(request, 'user/dashboardHome.html', {'user': logged_in_user})
 
 @login_required
-def dashbord_conta(request):
+def dashboardConta(request):
     form = UserForm()
     logged_in_user = request.user
-    return render(request, 'user/dashboard_conta.html', {'form': form, 'user': logged_in_user})
+    return render(request, 'user/dashboardConta.html', {'form': form, 'user': logged_in_user})
 
 @login_required
 @never_cache
@@ -87,10 +87,28 @@ def mentorProfile(request):
     logged_in_user = request.user
     return render(request, 'user/mentorprofile.html', {'user': logged_in_user})
 
-def chat(request):
+@login_required
+@never_cache
+def dashboardChat(request):
     logged_in_user = request.user
-    return render(request, 'communication/chat.html', {'user': logged_in_user})
+    return render(request, 'communication/dashboardChat.html', {'user': logged_in_user})
 
+
+@login_required
+@never_cache
+def agendamentoSemanal(request):
+    logged_in_user = request.user
+    return render(request, 'scheduling/agendamentoSemanal.html', {'user': logged_in_user})
+
+
+@login_required
+@never_cache
+def agendamentoMensal(request):
+    logged_in_user = request.user
+    return render(request, 'scheduling/agendamentoMes.html', {'user': logged_in_user})
+
+@login_required
+@never_cache
 def logoutView(request):
     logout(request)
     messages.success(request, "Você foi desconectado com sucesso.")
