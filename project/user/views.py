@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import UserForm, LoginForm, PerfilForm
+from .forms import UserForm, LoginForm, PerfilForm,PerfilRedesSociais
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib import messages
 from .models import User, Perfil
@@ -43,13 +43,12 @@ def cadastrarUsuario(request):
 
             perfil = Perfil(
                 cpf=user.cpf,
-                nome='',
+                nome=user.nome,
                 sobre='',
                 nivelExperiencia='',
-                nivel='',
                 certificacoes=[],
                 habilidades=[],
-                redesSociais=[]
+                redesSociais={}
             )
             perfil.save()
             messages.success(request, "Usuário cadastrado com sucesso!")
@@ -77,9 +76,51 @@ def dashboard(request):
 
 @login_required
 def dashboardConta(request):
-    form = UserForm()
     logged_in_user = request.user
-    return render(request, 'user/dashboardConta.html', {'form': form, 'user': logged_in_user})
+    perfil = Perfil.objects.get(cpf=logged_in_user.cpf)
+
+    if request.method == 'POST':
+        body = request.POST
+        dados = body.dict()
+        
+        if PerfilForm(body).is_valid():
+            logged_in_user.nome = dados['nome'] 
+            perfil.nome = dados['nome'] 
+            perfil.sobre = dados['sobre'] 
+            perfil.nivelExperiencia = dados['nivelExperiencia'] 
+            logged_in_user.save()
+         
+        if PerfilRedesSociais(body).is_valid():
+            perfil.redesSociais = { 
+                'facebook': dados['facebook'], 
+                'x':dados['x'], 
+                'instagram': dados['instagram'], 
+                'linkedIn': dados['linkedIn'] 
+            }
+            
+        perfil.save()
+  
+    formPerfil = PerfilForm(
+        initial={ 'nome': perfil.nome, 'sobre': perfil.sobre, 'nivelExperiencia':   perfil.nivelExperiencia }
+    )
+
+    perfilRedesSociais = PerfilRedesSociais(
+        initial={ 
+            'facebook':   perfil.redesSociais['facebook'] if 'facebook' in perfil.redesSociais else "", 
+            'instagram':  perfil.redesSociais['instagram'] if 'instagram' in perfil.redesSociais else "" ,
+            'x': perfil.redesSociais['x'] if 'x' in perfil.redesSociais else "" ,
+            'linkedIn': perfil.redesSociais['linkedIn'] if 'linkedIn' in perfil.redesSociais else "",
+        }
+    )
+    
+    return render(
+        request, 'user/dashboardConta.html', 
+        {
+            'formPerfil': formPerfil, 
+            'perfilRedesSociais': perfilRedesSociais, 
+            'user': logged_in_user
+        }
+    )
 
 @login_required
 @never_cache

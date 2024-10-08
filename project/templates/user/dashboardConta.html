@@ -112,23 +112,50 @@
                                     <h5 class="mb-0 py-2">Edite suas Configurações Pessoais</h5>
                                 </div>
                                 <div class="p-4">
-                                    <form>
+                                    <form method="POST">
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
-                                                <label for="name1">Nome Completo</label>
-                                                <input type="text" class="form-control" id="name1"
-                                                    value="Marco">
+                                                <label for="name1">{{ formPerfil.nome.label }}</label>
+                                                    {{ formPerfil.nome }}
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>{{ formPerfil.sobre.label }}</label>
+                                                    {{ formPerfil.sobre }}
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>{{ formPerfil.nivelExperiencia.label }}</label>
+                                                {{ formPerfil.nivelExperiencia }}
+                                            </div>
 
-                                                    {{ form.nomeZ }}
+                                            <div class="form-group col-md-12">
+                                                <label>{{ formPerfil.certificacoes.label }}</label>
+                                                {{ formPerfil.certificacoess }}
                                             </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Atualizar
                                             Informações</button>
                                     </form>
-
-
+                                </div>
+                                <div class="page-account-form">
+                                    <div class="form-titel border-bottom p-3">
+                                        <h5 class="mb-0 py-2">Habilidades</h5>
+                                    </div>
+                                    <div class="p-4">
+                                        <form form method="POST">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="fb">{{ perfilRedesSociais.facebook.label}}</label>
+                                                {{ perfilRedesSociais.facebook}}
+                                            </div>
+    
+                                            
+                                            <button type="submit" class="btn btn-primary">Atualizar
+                                                habilidades</button>
+                                        </form>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,34 +165,34 @@
                                     <h5 class="mb-0 py-2">Links Externos</h5>
                                 </div>
                                 <div class="p-4">
-                                    <form>
+                                    <form form method="POST">
+                                        {% csrf_token %}
                                         <div class="form-group">
-                                            <label for="fb">Facebook URL:</label>
-                                            <input type="text" class="form-control" id="fb"
-                                                value="https://www.facebook.com/">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tr">Twitter URL:</label>
-                                            <input type="text" class="form-control" id="tr"
-                                                value="https://twitter.com/">
+                                            <label for="fb">{{ perfilRedesSociais.facebook.label}}</label>
+                                            {{ perfilRedesSociais.facebook}}
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="li">LinkedIn URL:</label>
-                                            <input type="text" class="form-control" id="li"
-                                                value="https://in.linkedin.com/">
+                                            <label for="fb">{{ perfilRedesSociais.x.label}}</label>
+                                            {{ perfilRedesSociais.x}}
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="we">Website URL:</label>
-                                            <input type="text" class="form-control" id="we"
-                                                value="https://yourwebsite.com/">
+                                            <label for="fb">{{ perfilRedesSociais.instagram.label}}</label>
+                                            {{ perfilRedesSociais.instagram}}
                                         </div>
+                                        <div class="form-group">
+                                            <label for="fb">{{ perfilRedesSociais.linkedIn.label}}</label>
+                                            {{ perfilRedesSociais.linkedIn}}
+                                        </div>
+                                       
                                         <button type="submit" class="btn btn-primary">Atualizar
                                             Informações</button>
                                     </form>
+                                    
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Perfil
 from django.forms import PasswordInput
 
 class UserForm(forms.ModelForm):
@@ -28,10 +28,22 @@ class LoginForm(forms.Form):
     
     
 class PerfilForm(forms.Form): # MongoDB
-    nome = forms.CharField(max_length=128, label='nome')
-    sobre = forms.CharField(max_length=255, label='sobre')
-    nivelExperiencia = forms.CharField(max_length=255, label='nivelExperiencia')
-    nivel = forms.CharField(max_length=298, label='nivel')
-    certificacoes = forms.CharField(max_length=221, label="certificacoes")
-    habilidades = forms.CharField(max_length=211, label='habilidades')
-    redesSocias = forms.CharField(max_length=100,label='redesSocias')
+    nome = forms.CharField(  max_length=128, label='Nome Completo')
+    sobre = forms.CharField(max_length=255, label='Sobre', widget=forms.Textarea(attrs={"rows":"5"}))
+    nivelExperiencia = forms.ChoiceField( choices= [('junior', 'Junior'), ('pleno', 'Pleno'), ( 'senior', 'Sênior')]  )
+   
+    nome.widget.attrs["class"] = "form-control"
+    sobre.widget.attrs["class"] = "form-control"
+    nivelExperiencia.widget.attrs["class"] = "form-control"
+
+class PerfilRedesSociais(forms.Form): 
+    facebook  = forms.CharField(  max_length=255, label='Facebook ')
+    x = forms.CharField(max_length=255, label='X')
+    instagram = forms.CharField(max_length=255, label='Instragram')
+    linkedIn = forms.CharField(max_length=255, label='LinkedIn')
+
+    facebook.widget.attrs["class"] = "form-control"
+    x.widget.attrs["class"] = "form-control"
+    instagram.widget.attrs["class"] = "form-control"
+    linkedIn.widget.attrs["class"] = "form-control"
+ 
