@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import UserForm, LoginForm, PerfilForm,PerfilRedesSociais
+from .forms import UserForm, LoginForm, PerfilForm
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib import messages
 from .models import User, Perfil
@@ -43,7 +42,6 @@ def cadastrarUsuario(request):
 
             perfil = Perfil(
                 cpf=user.cpf,
-                nome=user.nome,
                 sobre='',
                 nivelExperiencia='',
                 certificacoes=[],
@@ -82,43 +80,50 @@ def dashboardConta(request):
     if request.method == 'POST':
         body = request.POST
         dados = body.dict()
-        
-        if PerfilForm(body).is_valid():
-            logged_in_user.nome = dados['nome'] 
-            perfil.nome = dados['nome'] 
+        formpefil = PerfilForm(body)
+
+        if formpefil.is_valid():
             perfil.sobre = dados['sobre'] 
-            perfil.nivelExperiencia = dados['nivelExperiencia'] 
-            logged_in_user.save()
-         
-        if PerfilRedesSociais(body).is_valid():
+            perfil.nivelExperiencia = dados['nivelExperiencia']. capitalize()
             perfil.redesSociais = { 
                 'facebook': dados['facebook'], 
                 'x':dados['x'], 
                 'instagram': dados['instagram'], 
                 'linkedIn': dados['linkedIn'] 
-            }
-            
-        perfil.save()
-  
-    formPerfil = PerfilForm(
-        initial={ 'nome': perfil.nome, 'sobre': perfil.sobre, 'nivelExperiencia':   perfil.nivelExperiencia }
-    )
+            }   
 
-    perfilRedesSociais = PerfilRedesSociais(
+            perfil.habilidades = body.getlist('habilidades')
+           
+            perfil.horariosDisponiveis = [ 
+                { 'horarioInicial': dados['horaInicio'], 'horarioFinal': dados['horaFinal'] },
+               {  'atende': body.getlist('diasAtendimento') }
+            ]
+         
+                   
+            perfil.save()
+
+    formPerfil = PerfilForm(
         initial={ 
+            'sobre': perfil.sobre, 
+            'nivelExperiencia':   perfil.nivelExperiencia,
             'facebook':   perfil.redesSociais['facebook'] if 'facebook' in perfil.redesSociais else "", 
             'instagram':  perfil.redesSociais['instagram'] if 'instagram' in perfil.redesSociais else "" ,
             'x': perfil.redesSociais['x'] if 'x' in perfil.redesSociais else "" ,
             'linkedIn': perfil.redesSociais['linkedIn'] if 'linkedIn' in perfil.redesSociais else "",
+            'habilidades': perfil.habilidades,
+            'diasAtendimento':  perfil.horariosDisponiveis[1].get('atende') if len(perfil.horariosDisponiveis) > 0 else "" ,
+            'horaInicio': perfil.horariosDisponiveis[0].get('horarioInicial') if len(perfil.horariosDisponiveis) > 0 else "",
+            'horaFinal' :perfil.horariosDisponiveis[0].get('horarioFinal')if len(perfil.horariosDisponiveis) > 0 else ""
+             
         }
     )
-    
+        
     return render(
         request, 'user/dashboardConta.html', 
         {
             'formPerfil': formPerfil, 
-            'perfilRedesSociais': perfilRedesSociais, 
-            'user': logged_in_user
+            'user': logged_in_user, 
+            'perfil': perfil,
         }
     )
 

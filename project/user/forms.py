@@ -28,22 +28,134 @@ class LoginForm(forms.Form):
     
     
 class PerfilForm(forms.Form): # MongoDB
-    nome = forms.CharField(  max_length=128, label='Nome Completo')
-    sobre = forms.CharField(max_length=255, label='Sobre', widget=forms.Textarea(attrs={"rows":"5"}))
-    nivelExperiencia = forms.ChoiceField( choices= [('junior', 'Junior'), ('pleno', 'Pleno'), ( 'senior', 'Sênior')]  )
-   
-    nome.widget.attrs["class"] = "form-control"
-    sobre.widget.attrs["class"] = "form-control"
-    nivelExperiencia.widget.attrs["class"] = "form-control"
+    sobre = forms.CharField(
+        max_length=255, label='Sobre', 
+        widget=forms.Textarea(
+            attrs={"rows":"5", "class": "form-control "}
+        )
+    )
+    nivelExperiencia = forms.ChoiceField( 
+        choices= [
+                ('junior', 'Junior'), 
+                ('pleno', 'Pleno'), 
+                ( 'senior', 'Sênior')
+        ],
+        widget= forms.Select(attrs={ "class": "form-control"})
+    )
+    
+    facebook = forms.CharField(
+        max_length=255, 
+        label='Facebook', 
+        widget=forms.TextInput(attrs={ "class": "form-control"})
+    )
+    x = forms.CharField(
+        max_length=255, 
+        label='X',  
+        widget=forms.TextInput(attrs={ "class": "form-control"})
+    )
+    instagram = forms.CharField(
+        max_length=255, 
+        label='Instragram',  
+        widget=forms.TextInput(attrs={ "class": "form-control"})
+    )
+    linkedIn = forms.CharField(
+        max_length=255, 
+        label='LinkedIn',  
+        widget=forms.TextInput(attrs={ "class": "form-control"})
+    )
 
-class PerfilRedesSociais(forms.Form): 
-    facebook  = forms.CharField(  max_length=255, label='Facebook ')
-    x = forms.CharField(max_length=255, label='X')
-    instagram = forms.CharField(max_length=255, label='Instragram')
-    linkedIn = forms.CharField(max_length=255, label='LinkedIn')
+    SKILLS_CHOICES = [
+        ('python', 'Python'),
+        ('java', 'Java'),
+        ('javascript', 'JavaScript'),
+        ('csharp', 'C#'),
+        ('ruby', 'Ruby'),
+        ('php', 'PHP'),
+        ('html', 'HTML'),
+        ('css', 'CSS'),
+        ('typescript', 'TypeScript'),
+        ('go', 'Go'),
+        ('swift', 'Swift'),
+        ('kotlin', 'Kotlin'),
+        ('r', 'R'),
+        ('scala', 'Scala'),
+        ('perl', 'Perl'),
+        ('lua', 'Lua'),
+        ('sql', 'SQL'),
+        ('bash', 'Bash'),
+        ('powershell', 'PowerShell'),
+        ('rust', 'Rust'),
+        ('haskell', 'Haskell'),
+        ('dart', 'Dart'),
+        ('elixir', 'Elixir'),
+        ('clojure', 'Clojure'),
+        ('fsharp', 'F#'),
+        ('objectivec', 'Objective-C'),
+        ('matlab', 'MATLAB'),
+        ('assembly', 'Assembly'),
+        ('vba', 'VBA'),
+        ('fortran', 'Fortran'),
+        ('cobol', 'COBOL'),
+        ('groovy', 'Groovy'),
+        ('julia', 'Julia'),
+        ('tcl', 'Tcl'),
+        ('scheme', 'Scheme'),
+        ('erlang', 'Erlang'),
+        ('nim', 'Nim'),
+        ('solidity', 'Solidity'),
+        ('ada', 'Ada'),
+        ('prolog', 'Prolog'),
+        ('vbnet', 'VB.NET'),
+        ('delphi', 'Delphi'),
+        ('sml', 'Standard ML'),
+    ]
 
-    facebook.widget.attrs["class"] = "form-control"
-    x.widget.attrs["class"] = "form-control"
-    instagram.widget.attrs["class"] = "form-control"
-    linkedIn.widget.attrs["class"] = "form-control"
+    habilidades = forms.MultipleChoiceField(
+        choices=SKILLS_CHOICES,
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class":"containerSelect"}
+        ),
+        label='Habilidades de Programação',
+        required=False
+    )
+
+
+    diasAtendimento = forms.MultipleChoiceField(
+        choices= [ 
+            ( 1, 'Domingo'),
+            ( 2, 'Segunra-feira'),
+            ( 3, 'Terça-feira'),
+            ( 4, 'Quarta-feria'),
+            ( 5, 'Quinta-feira'),
+            ( 6, 'Sexta-feira'),
+            ( 7, 'Sabado'),
+                  
+        ],
+        widget=forms.CheckboxSelectMultiple(
+            attrs={"class":"containerSelect"}
+        ),
+        label='Dias Disponível',
+        required=False
+    )
  
+    horaInicio = forms.TimeField(
+        label="Hora inicial de Mentorias",
+        widget=forms.TimeInput(
+            format="%H:%M",
+            attrs= {
+                "type": "time",
+                "class": "form-control" 
+            }
+        )
+    )
+
+    horaFinal = forms.TimeField(
+        label="Hora final de Mentorias",
+        widget=forms.TimeInput(
+            format="%H:%M",
+            attrs= {
+                "type": "time",
+                "class": "form-control" 
+            }
+        )
+    )

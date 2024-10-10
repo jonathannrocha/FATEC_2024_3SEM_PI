@@ -35,8 +35,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     dataNascimento = models.DateField(null=True, blank=True)
     typeUser = models.CharField(max_length=10, choices=[
         # ('admin', 'Admin'),
-        ('mentor', 'Mentor'),
-        ('mentorado', 'Mentorado')
+        ('Mentor', 'Mentor'),
+        ('Mentorado', 'Mentorado')
     ], default='mentorado')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
@@ -51,10 +51,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 class Perfil(Document):
     cpf = StringField(required=True,unique=True)
-    nome = StringField(max_length=128)
     sobre = StringField(max_length=255)
     certificacoes = ListField(StringField(max_length=221))
     habilidades = ListField(StringField(max_length=211))
     redesSociais = DictField()
-    horariosDisponiveis = ListField(DateTimeField())
+    horariosDisponiveis = ListField()
     nivelExperiencia = StringField(max_length=128)

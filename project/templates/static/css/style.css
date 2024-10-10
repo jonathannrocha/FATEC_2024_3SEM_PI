@@ -41126,3 +41126,26 @@ table.dataTable thead .sorting_desc_disabled:before {
   /* use a clearer font family */
 }
 
+.containerSelect {
+  display: grid;                     /* Ativa o layout Grid */
+  grid-template-columns: repeat(4, 1fr); /* Define três colunas iguais */
+  gap: 20px;                        /* Espaçamento entre os itens */
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+
+  & div label {
+    display: flex;
+  }
+
+  & div label input {
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 557px){
+  .containerSelect {
+    display: grid;                     /* Ativa o layout Grid */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

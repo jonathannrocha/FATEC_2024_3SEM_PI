@@ -64,12 +64,12 @@
                                 <div class="profile-img text-center rounded-circle">
                                     <div class="pt-5">
                                         <div class="bg-img m-auto">
-                                            <img src="assets/img/avtar/01.jpg" class="img-fluid"
-                                                alt="users-avatar">
+                                            <!-- <img src="" class="img-fluid" -->
+                                                <!-- alt="users-avatar"> -->
                                         </div>
                                         <div class="profile pt-4">
-                                            <h4 class="mb-1">Marco</h4>
-                                            <p>Senior</p>
+                                            <h4 class="mb-1">{{  user.nome }} </h4>
+                                            <p>{{  perfil.nivelExperiencia }} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-5 col-md-6 col-12 border-t border-right">
+                        <div class="col-xl-9  col-md-6 col-12 border-t border-right">
                             <div class="page-account-form">
                                 <div class="form-titel border-bottom p-3">
                                     <h5 class="mb-0 py-2">Edite suas Configurações Pessoais</h5>
@@ -116,10 +116,6 @@
                                         {% csrf_token %}
                                         <div class="form-row">
                                             <div class="form-group col-md-12">
-                                                <label for="name1">{{ formPerfil.nome.label }}</label>
-                                                    {{ formPerfil.nome }}
-                                            </div>
-                                            <div class="form-group col-md-12">
                                                 <label>{{ formPerfil.sobre.label }}</label>
                                                     {{ formPerfil.sobre }}
                                             </div>
@@ -127,72 +123,50 @@
                                                 <label>{{ formPerfil.nivelExperiencia.label }}</label>
                                                 {{ formPerfil.nivelExperiencia }}
                                             </div>
-
                                             <div class="form-group col-md-12">
-                                                <label>{{ formPerfil.certificacoes.label }}</label>
-                                                {{ formPerfil.certificacoess }}
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary">Atualizar
-                                            Informações</button>
-                                    </form>
-                                </div>
-                                <div class="page-account-form">
-                                    <div class="form-titel border-bottom p-3">
-                                        <h5 class="mb-0 py-2">Habilidades</h5>
-                                    </div>
-                                    <div class="p-4">
-                                        <form form method="POST">
-                                            {% csrf_token %}
-                                            <div class="form-group">
-                                                <label for="fb">{{ perfilRedesSociais.facebook.label}}</label>
-                                                {{ perfilRedesSociais.facebook}}
+                                                <label for="fb">{{ formPerfil.facebook.label}}</label>
+                                                {{ formPerfil.facebook}}
                                             </div>
     
-                                            
-                                            <button type="submit" class="btn btn-primary">Atualizar
-                                                habilidades</button>
-                                        </form>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6 border-t col-12">
-                            <div class="page-account-form">
-                                <div class="form-titel border-bottom p-3">
-                                    <h5 class="mb-0 py-2">Links Externos</h5>
-                                </div>
-                                <div class="p-4">
-                                    <form form method="POST">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            <label for="fb">{{ perfilRedesSociais.facebook.label}}</label>
-                                            {{ perfilRedesSociais.facebook}}
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.x.label}}</label>
+                                                {{ formPerfil.x}}
+                                            </div>
+    
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.instagram.label}}</label>
+                                                {{ formPerfil.instagram}}
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.linkedIn.label}}</label>
+                                                {{ formPerfil.linkedIn}}
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.habilidades.label}}</label>
+                                                {{ formPerfil.habilidades}}
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.diasAtendimento.label}}</label>
+                                                {{ formPerfil.diasAtendimento}}
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.horaInicio.label}}</label>
+                                                {{ formPerfil.horaInicio}}
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label for="fb">{{ formPerfil.horaInicio.label}}</label>
+                                                {{ formPerfil.horaFinal}}
+                                            </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="fb">{{ perfilRedesSociais.x.label}}</label>
-                                            {{ perfilRedesSociais.x}}
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="fb">{{ perfilRedesSociais.instagram.label}}</label>
-                                            {{ perfilRedesSociais.instagram}}
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="fb">{{ perfilRedesSociais.linkedIn.label}}</label>
-                                            {{ perfilRedesSociais.linkedIn}}
-                                        </div>
-                                       
                                         <button type="submit" class="btn btn-primary">Atualizar
                                             Informações</button>
                                     </form>
-                                    
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
