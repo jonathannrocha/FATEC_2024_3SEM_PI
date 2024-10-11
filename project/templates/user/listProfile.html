@@ -1,0 +1,91 @@
+{% extends "user/dashboardBase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+        <div class="col-md-12 m-b-30">
+            <!-- begin page title -->
+            <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                <div class="page-title mb-2 mb-sm-0">
+                    <h1>Mentor</h1>
+                </div>
+                <div class="ml-auto d-flex align-items-center">
+                    <nav>
+                        <ol class="breadcrumb p-0 m-b-0">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'user:dashboard' %}"><i class="ti ti-home"></i></a>
+                            </li>
+                            
+                            <li class="breadcrumb-item active text-primary" aria-current="page">
+                                Mentoria</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!-- end page title -->
+        </div>
+    </div>
+    <!-- end row -->
+    <!-- start-mentores contant-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-statistics clients-contant">
+                <div class="card-header">
+                    <div class="d-xxs-flex justify-content-between align-items-center">
+                        <div class="card-heading">
+                            <h4 class="card-title"></h4>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="card-body py-0 table-responsive">
+                    <table class="table clients-contant-table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Experiencia</th>
+                                
+                                <th scope="col">Ver Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if perfis %}
+                                {% for perfil in perfis %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div class="bg-img mr-4">
+                                                    <!-- <img src="assets/img/avtar/01.jpg" class="img-fluid"
+                                                        alt="Clients-01"> -->
+                                                </div>
+                                                <p class="font-weight-bold">{{ perfil.nome}} </p>
+                                            </div>
+                                        </td>
+                                        <td>{{ perfil.nivelExperiencia}}</td>
+                                        
+                                        <td>
+
+                                            <a href= "{% url 'user:profile' cpf=perfil.cpf %}"
+                                                class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 "><i
+                                                    class="ti ti-id-badge"></i></a>
+                                            
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="5">Nenhum perfil encontrado.</td>
+                                    </tr>
+                                {% endif %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end-mentor contant-->
+</div>
+{% endblock content %}

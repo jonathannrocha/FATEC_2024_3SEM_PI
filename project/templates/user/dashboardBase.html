@@ -61,12 +61,14 @@
                                         <i class="ti ti-close"></i>
                                     </div>
                                     <div class="search-content">
-                                        <form>
+                                       
+                                        <form method="POST" action="{% url 'user:mentorProfile' %}">
+                                            {% csrf_token %}
                                             <div class="form-group">
                                                 <i class="ti ti-search magnifier"></i>
-                                                <input type="text" class="form-control autocomplete"
-                                                    placeholder="Pesquise aqui" id="autocomplete-ajax"
-                                                    autofocus="autofocus">
+                                                <input type="search" class="form-control autocomplete"
+                                                        placeholder="Pesquise aqui" id="send_Value" name="search_query"
+                                                        autofocus="autofocus">
                                             </div>
                                         </form>
                                     </div>

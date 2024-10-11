@@ -50,6 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.cpf
     
 class Perfil(Document):
+    nome = StringField(max_length=255)
     cpf = StringField(required=True,unique=True)
     sobre = StringField(max_length=255)
     certificacoes = ListField(StringField(max_length=221))
@@ -57,3 +58,6 @@ class Perfil(Document):
     redesSociais = DictField()
     horariosDisponiveis = ListField()
     nivelExperiencia = StringField(max_length=128)
+
+    def __str__(self):
+        return f"nome: {self.nome}, nivelExperiencia: {self.nivelExperiencia}, habilidades: { ','.join(self.habilidades)}"

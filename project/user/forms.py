@@ -28,6 +28,11 @@ class LoginForm(forms.Form):
     
     
 class PerfilForm(forms.Form): # MongoDB
+    nome = forms.CharField(
+        widget=forms.TextInput(
+            attrs={ "class": "form-control"}
+        )
+    )
     sobre = forms.CharField(
         max_length=255, label='Sobre', 
         widget=forms.Textarea(
@@ -159,3 +164,5 @@ class PerfilForm(forms.Form): # MongoDB
             }
         )
     )
+
+

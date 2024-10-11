@@ -8,6 +8,7 @@ from django.views.decorators.cache import never_cache
 from django.contrib.auth import logout
 from mongoengine import connect
 from database.db import connectMongoDB
+from mongoengine.queryset.visitor import Q
 
 connectMongoDB()
 
@@ -83,6 +84,7 @@ def dashboardConta(request):
         formpefil = PerfilForm(body)
 
         if formpefil.is_valid():
+            perfil.nome = dados['nome']
             perfil.sobre = dados['sobre'] 
             perfil.nivelExperiencia = dados['nivelExperiencia']. capitalize()
             perfil.redesSociais = { 
@@ -98,12 +100,15 @@ def dashboardConta(request):
                 { 'horarioInicial': dados['horaInicio'], 'horarioFinal': dados['horaFinal'] },
                {  'atende': body.getlist('diasAtendimento') }
             ]
-         
-                   
+
+            logged_in_user.nome =  dados['nome']
+            logged_in_user.save()
+           
             perfil.save()
 
     formPerfil = PerfilForm(
         initial={ 
+            'nome': perfil.nome,
             'sobre': perfil.sobre, 
             'nivelExperiencia':   perfil.nivelExperiencia,
             'facebook':   perfil.redesSociais['facebook'] if 'facebook' in perfil.redesSociais else "", 
@@ -131,7 +136,16 @@ def dashboardConta(request):
 @never_cache
 def mentorProfile(request):
     logged_in_user = request.user
-    return render(request, 'user/mentorprofile.html', {'user': logged_in_user})
+    
+    perfil = Perfil.objects( ) 
+    
+    valor_pesquisa = request.POST.get('search_query')
+    if valor_pesquisa != None:
+        perfil = Perfil.objects.filter(
+           Q(nome__icontains=valor_pesquisa) 
+        )
+
+    return render(request, 'user/listProfile.html', {'user': logged_in_user, 'perfis': perfil})
 
 @login_required
 @never_cache
@@ -139,13 +153,11 @@ def dashboardChat(request):
     logged_in_user = request.user
     return render(request, 'communication/dashboardChat.html', {'user': logged_in_user})
 
-
 @login_required
 @never_cache
 def agendamentoSemanal(request):
     logged_in_user = request.user
     return render(request, 'scheduling/agendamentoSemanal.html', {'user': logged_in_user})
-
 
 @login_required
 @never_cache
@@ -159,3 +171,7 @@ def logoutView(request):
     logout(request)
     messages.success(request, "Você foi desconectado com sucesso.")
     return redirect('user:user_login')
+
+def profileMentor(request,  cpf):
+    print(cpf)
+    return render(request, 'user/profile.html')
