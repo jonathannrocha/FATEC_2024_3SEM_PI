@@ -1,0 +1,18 @@
+<div>
+    <h2>Chat - Sala {{ room.salaId }}</h2>
+
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Formulário para envio de mensagens -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderizar o formulário -->
+        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+    </form>
+</div>
