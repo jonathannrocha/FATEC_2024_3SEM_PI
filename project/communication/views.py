@@ -28,7 +28,7 @@ def iniciarChat(request, cpfMentor):
         sala_id = newRoom.salaId
     else:
         sala_id = SalaE.salaId
-    return redirect('videochamadas:chat', sala_id=sala_id)
+    return redirect('communication:chat', sala_id=sala_id)
 
 @login_required
 def chat(request, sala_id):
@@ -44,7 +44,7 @@ def chat(request, sala_id):
             nova_mensagem = f"{request.user.cpf}: {mensagem} at {datetime.utcnow()}"
             room.mensagens.append(nova_mensagem)  
             room.save()
-            return redirect('videochamadas:chat', sala_id=sala_id)
+            return redirect('communication:chat', sala_id=sala_id)
     else:
         form = MessageForm()
 

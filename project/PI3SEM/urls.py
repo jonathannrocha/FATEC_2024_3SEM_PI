@@ -18,9 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('silk/', include('silk.urls', namespace='silk')),
-    path('',include('user.urls', namespace='user')),
-    path('agendamentos/', include('scheduling.urls', namespace='scheduling')),
+    
+    # admin
     path('admin/', admin.site.urls),
-    path('videochamadas/', include('communication.urls', namespace='communication')),
+    
+    #silk
+    path('silk/', include('silk.urls', namespace='silk')),
+    
+    # Urls apps
+    path('',include('user.urls', namespace='user')),
+    path('scheduling/', include('scheduling.urls', namespace='scheduling')),
+    path('communication/', include('communication.urls', namespace='communication')),
 ]
