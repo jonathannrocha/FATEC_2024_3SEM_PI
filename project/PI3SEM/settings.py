@@ -153,7 +153,7 @@ AUTHENTICATION_BACKENDS=[
     'django.contrib.auth.backends.ModelBackend',  # Backend padrão do Django
 ]
 
-LOGIN_URL = 'user_login'
+LOGIN_URL = 'user:user_login'
 LOGIN_REDIRECT_URL = 'dashboard'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 
