@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from uuid import uuid4
 from user.models import User
-from communication.models import Room, Message
+from communication.models import Room
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from user.views import user_login
 from datetime import datetime
 from .forms import MessageForm
+import pytz
 
 # Create your views here.
 
@@ -14,8 +14,8 @@ def video_call(request):
     room_name = str(uuid4())
     return render(request, 'communication/video_call.html', {'room_name': room_name})
 
-def listAllMentor(request):
-    listM = User.objects.filter(typeUser='mentorado')
+def ListarMentores(request):
+    listM = User.objects.filter(typeUser='Mentor')
     return render(request, 'communication/dashboardChat.html', {'mentores': listM})
 
 @login_required
@@ -24,11 +24,11 @@ def iniciarChat(request, cpfMentor):
     SalaE = Room.objects.filter(cpfMentor=cpfMentor, cpfMentorado=cpfMentorado).first()
     if not SalaE:
         newRoom = Room(cpfMentor=cpfMentor, cpfMentorado=cpfMentorado)
-        newRoom.save() 
+        newRoom.save()
         sala_id = newRoom.salaId
     else:
         sala_id = SalaE.salaId
-    return redirect('videochamadas:chat', sala_id=sala_id)
+    return redirect('communication:chat', sala_id=sala_id)
 
 @login_required
 def chat(request, sala_id):
@@ -40,18 +40,87 @@ def chat(request, sala_id):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            mensagem = form.cleaned_data['mensagens']
-            nova_mensagem = f"{request.user.cpf}: {mensagem} at {datetime.utcnow()}"
-            room.mensagens.append(nova_mensagem)  
-            room.save()
-            return redirect('videochamadas:chat', sala_id=sala_id)
+            mensagem_conteudo = form.cleaned_data['mensagens']
+            timestamp = datetime.now(pytz.timezone('America/Sao_Paulo'))
+
+            nova_mensagem = {
+                'sender': request.user.cpf,
+                'content': mensagem_conteudo,
+                'timestamp': timestamp.isoformat()
+            }
+
+            if isinstance(nova_mensagem, dict):
+                room.mensagens.append(nova_mensagem)
+                room.save()
+            else:
+                return render(request, 'communication/dashboardSala.html', {
+                    'form': form,
+                    'room': room,
+                    'messages': room.mensagens,
+                    'error': 'Formato de mensagem inválido.'
+                })
+
+            return redirect('communication:chat', sala_id=sala_id)
     else:
         form = MessageForm()
 
-    messages = room.mensagens
-    
     return render(request, 'communication/dashboardSala.html', {
         'form': form,
         'room': room,
-        'messages': messages
+        'messages': room.mensagens
+    })
+
+@login_required
+def viewsChats(request):
+    cpflogado = request.user.cpf
+
+    salas = Room.objects.filter(cpfMentorado=cpflogado)
+
+
+    salas_data = []
+    for sala in salas:
+        salas_data.append({
+            'salaId': sala.salaId,
+            'cpfMentor': sala.cpfMentor,
+            'cpfMentorado': sala.cpfMentorado,
+            'mensagens': sala.mensagens[:2],
+        })
+    # return JsonResponse({'salas_abertas': salas_data})  
+    return render(request, 'communication/dashboardChat.html', {'salas_abertas': salas_data})
+
+def entrar_na_sala(request, salaId):
+    try:
+        sala = Room.objects.get(salaId=salaId)
+    except Room.DoesNotExist:
+        return render(request, 'pagina_erro.html', {'mensagem': 'Sala não encontrada'})
+
+    form = MessageForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        mensagem_conteudo = form.cleaned_data['mensagens']
+        timestamp = datetime.now(pytz.timezone('America/Sao_Paulo'))
+
+        nova_mensagem = {
+            'sender': request.user.cpf,
+            'content': mensagem_conteudo,
+            'timestamp': timestamp.isoformat()
+        }
+
+        if isinstance(nova_mensagem, dict):
+            sala.mensagens.append(nova_mensagem)
+            sala.save()
+        else:
+            return render(request, 'communication/dashboardSala.html', {
+                'form': form,
+                'room': sala,
+                'messages': sala.mensagens,
+                'error': 'Formato de mensagem inválido.'
+            })
+
+        return redirect('communication:entrar_na_sala', salaId=salaId)
+
+    return render(request, 'communication/dashboardSala.html', {
+        'room': sala,
+        'messages': sala.mensagens,
+        'form': form,
     })

@@ -320,10 +320,9 @@
                                                     <h4 class="text-white mb-0">{{ user.nome }}</h4>
                                                     <small class="text-white">{{ user.gmail}}</small>
                                                 </div>
-                                                <a href="#" class="text-white font-20 tooltip-wrapper"
-                                                    data-toggle="tooltip" data-placement="top" title="Logout"
-                                                    data-original-title="Logout" onclick="logoutUser()">
-                                                    <i class="zmdi zmdi-power"></i>
+                                                <a href="{% url 'user:logout' %}" class="text-white font-20 tooltip-wrapper"
+                                                    data-toggle="tooltip" data-placement="top" title="Logout">
+                                                <i class="zmdi zmdi-power"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -381,7 +380,7 @@
                                         class="nav-title">Mentorias</span></a> </li>
                             <li>
 
-                            <li><a href="{% url 'user:dashboardChat' %}" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span
+                            <li><a href="{% url 'communication:ListarMentores' %}" aria-expanded="false"><i class="nav-icon ti ti-comment"></i><span
                                         class="nav-title">Chat</span></a> </li>
                             <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i
                                         class="nav-icon ti ti-calendar"></i><span
@@ -432,16 +431,6 @@
             <script src="{% static 'js/app.js'%}"></script>
         </div>
     </div>
-
-    <script>
-        function logoutUser() {
-            // Aqui você pode adicionar qualquer lógica de logout, se necessário,
-            // como limpar tokens, sessões, etc.
-
-            // Redireciona para a tela de login
-            window.location.href = '/login'; // Substitua '/login' pela URL correta da sua tela de login.
-        }
-    </script>
 </body>
 
 

@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, DateTimeField, ListField
+from mongoengine import Document, StringField, ListField,DictField
 import random
 import string
 from datetime import datetime
@@ -10,18 +10,10 @@ def uniqueKeySalaID():
 
 class Room(Document):
     cpfMentor = StringField(required=True)
-    cpfMentorado = StringField(required=True)
+    cpfMentorado = StringField(required=True)  
     salaId = StringField(default=uniqueKeySalaID, unique=True)
-    mensagens = ListField(StringField())
-    
+
+    mensagens = ListField(DictField())  
+
     def __str__(self):
         return f"Sala: {self.salaId} - Mentor: {self.cpfMentor} - Mentorado: {self.cpfMentorado}"
-
-class Message(Document):
-    room = StringField(required=True)
-    sender = StringField(required=True)
-    content = StringField(required=True)
-    timestamp = DateTimeField(default=datetime.utcnow)
-    
-    def __str__(self):
-        return f"{self.sender}: {self.content} at {self.timestamp}"

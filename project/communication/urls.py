@@ -1,11 +1,20 @@
 from django.urls import path
-from .views import video_call, listAllMentor, iniciarChat, chat
+from . import views
 
 app_name = 'communication'
 
 urlpatterns = [
-    path('video_call/', video_call, name='video_call'),
-    path('test/', listAllMentor, name='listAllMentor'),
-    path('iniciarChat/<str:cpfMentor>/', iniciarChat, name='iniciarChat'),
-    path('chat/<str:sala_id>/', chat, name='chat'),
+    
+    # urls chamada video
+    
+    path('dashboard/videoCall', views.video_call, name='video_call'),
+    
+    # urls chat
+    
+    path('room/dashboard/', views.ListarMentores, name='ListarMentores'),
+    path('room/start/<str:cpfMentor>/', views.iniciarChat, name='iniciarChat'),
+    path('room/chat/<str:sala_id>/', views.chat, name='chat'),
+    path('room/list/', views.viewsChats, name='viewsChats'),
+    path('room/enter/<str:salaId>/', views.entrar_na_sala, name='entrar_na_sala'),
+    
 ]
