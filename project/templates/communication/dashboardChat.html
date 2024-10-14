@@ -2,22 +2,53 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container text-center mt-5">
     <h1>Mentores</h1>
     <ul class="list-group">
         {% for mentor in mentores %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-primary me-2"></span>
-                    <strong>{{ mentor.nome }}</strong> - {{ mentor.gmail }}
-                </div>
-                <a href="{% url 'communication:iniciarChat' mentor.cpf %}"> 
-                    <button class="btn btn-primary">Iniciar Chat</button>
-                </a>
-            </li>
+        <li class="list-group-item">
+            <div>
+                <strong>{{ mentor.nome }}</strong> - {{ mentor.gmail }}
+            </div>
+            <a href="{% url 'communication:iniciarChat' mentor.cpf %}">
+                <button class="btn btn-primary">Iniciar Chat</button>
+            </a>
+        </li>
+        {% empty %}
+        <li>Nenhum mentor disponível.</li>
         {% endfor %}
     </ul>
 </div>
 
+<h1>Salas de Chat</h1>
+<ul>
+    {% if salas_abertas %}
+        {% for sala in salas_abertas %}
+        <li>
+            <strong>Sala ID:</strong> {{ sala.salaId }}<br />
+            <strong>CPF Mentor:</strong> {{ sala.cpfMentor }}<br />
+            <strong>CPF Mentorado:</strong> {{ sala.cpfMentorado }}<br />
+
+            <strong>Últimas mensagens:</strong><br />
+            <ul>
+                {% for mensagem in sala.mensagens %}
+                <li>
+                    <strong>{{ mensagem.sender }}:</strong> {{ mensagem.content }} <br />
+                    <em>Enviada em:</em> {{ mensagem.timestamp|date:"d/m/Y H:i" }}
+                </li>
+                {% empty %}
+                <li>Nenhuma mensagem enviada ainda.</li>
+                {% endfor %}
+            </ul>
+
+            <form action="{% url 'communication:entrar_na_sala' salaId=sala.salaId %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-secondary">Entrar na Sala</button>
+            </form>
+        </li>
+        {% endfor %}
+    {% else %}
+        <li>Você não está relacionado a nenhuma sala.</li>
+    {% endif %}
+</ul>
 {% endblock content %}
