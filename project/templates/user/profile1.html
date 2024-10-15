@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'css/profile1.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   <div class="container">
+       <div class="profile-card"> 
+            <div class="profile-pic">
+                <img src="{% static '/img/avatar.webp' %}" alt="user avatar">
+            </div>
+
+            <div class="profile-detalhes">
+                 <div class="intro">
+                    <h2>Anna</h2>
+                    <h4>Desenvolvedora Web</h4>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-facebook" style="color:var(--blue)"></i></a>
+                        <a href="#"><i class="fab fa-twitter"  style="color:var(--skyblue)"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"  style="color:var(--dark-pink)"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"  style="color:var(--light-blue)"></i></a>
+                    </div>
+                 </div>
+
+                 <div class="contact-info">
+                    <div class="row">
+                         <div class="icon">
+                            <i class="fa fa-phone"  style="color:var(--light-purple)"></i>
+                         </div>
+                         <div class="content">
+                            <span>Telefone</span>
+                            <h5>+55(19)999-6767</h5>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="icon">
+                           <i class="fa fa-envelope-open"  style="color:var(--light-purple)"></i>
+                        </div>
+                        <div class="content">
+                           <span>Email</span>
+                           <h5>exemplo@gmail.com</h5>
+                        </div>
+                   </div>
+    
+                   <div class="row">
+                    <div class="icon">
+                       <i class="fa fa-map-marker"  style="color:var(--light-purple)"></i>
+                    </div>
+                    <div class="content">
+                       <span>País</span>
+                       <h5>Brasil</h5>
+                    </div>
+                 </div>
+
+            </div>
+            
+            </div>
+       </div>
+
+       <div class="sobre">
+           <h1>Sobre</h1>
+
+           <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad doloribus sed sunt cum molestiae. Exercitationem ad quia et obcaecati magnam ab at odio adipisci, dolores porro totam, eum facilis natus?
+          </p>
+
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis velit est, accusamus magni consequatur beatae minima voluptate dignissimos excepturi, cumque eum aliquid saepe distinctio obcaecati provident optio, fugit architecto? Beatae.
+          </p>
+          <h2>Skills !!!</h2>
+          <div class="skill">
+             <div class="skillbox">
+                 <div class="icon">
+                    <img src="{% static '/img/ui.svg' %}" alt="">
+                 </div>
+                 <div class="desc">
+                    <h3>UI/UX Designer</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
+                 </div>
+                 <button class="sobre-btn" id="close-btn">
+                  <i class="fas fa-times"></i> Fechar
+
+             </div>
+
+             <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/app.svg' %}" alt="">
+                </div>
+                <div class="desc">
+                   <h3>Desenvolvedor Mobile</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
+                </div>
+            </div>
+
+            <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/api.svg' %}" alt="">
+                </div>
+                <div class="desc">
+                   <h3>Desenvolvedor API</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
+                </div>
+            </div>
+
+            <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/web.svg' %}" alt="">
+                </div>
+                <div class="desc">
+                   <h3>Desenvolvedor Web</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
+                </div>
+            </div>
+          </div>
+       </div>
+   </div>
+   <script>
+      document.getElementById("close-btn").addEventListener("click", function() {
+          window.location.href = "dashboard.html";
+      });
+  </script>
+</body>
+</html>
