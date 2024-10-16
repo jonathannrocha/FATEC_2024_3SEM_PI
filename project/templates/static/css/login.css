@@ -218,3 +218,19 @@ body {
     margin-right: 20px;
 }
 
+/* Para Chrome, Safari e outros navegadores baseados em WebKit */
+::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+    height: 8px; /* Altura da barra de rolagem horizontal */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Cor da parte arrastável (cinza) */
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0; /* Cor do fundo da barra de rolagem (cinza claro) */
+}
+
+

@@ -1,163 +1,131 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <title>Profile</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'css/profile.css' %}">
-    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/x-icon">
-
-    <title>InovaDevConsultoria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
    <div class="container">
-    
-      <nav id="header">
-        
-        <div class="nav-menu" id="myNavMenu">
-            <ul class="nav_menu_list">
-                <li class="nav_list">
-                   
-                    <div class="circle"></div>
-                </li>                
-            </ul>
-        </div>
-        <div class="nav-button">
-            <button class="btn" id="backBtn">Voltar <i class="uil-times"></i></button>
-          </div>
-        <div class="nav-menu-btn">
-            <i class="uil uil-bars" onclick="myMenuFunction()"></i>
-        </div>
-      </nav>
-
-
-    
-    <main class="wrapper">
-    
-       <section class="featured-box" id="home">
-          <div class="featured-text">
-            <div class="featured-text-card">
-                <span>Luiz</span>
-            </div>
-            <div class="featured-name">
-                <p>Eu Sou <span class="typedText"></span></p>
-            </div>
-            <div class="featured-text-info">
-                <p>Experiencia em Frontend sempre aprendendo a programar.
-                </p>
-            </div>
-            <div class="featured-text-btn">
-                <button class="btn blue-btn">Agendar</button>
+       <div class="profile-card"> 
+            <div class="profile-pic">
+                <img src="{% static '/img/avatar.webp' %}" alt="user avatar">
             </div>
 
+            <div class="profile-detalhes">
+                 <div class="intro">
+                    <h2>Anna</h2>
+                    <h4>Desenvolvedora Web</h4>
+                    <div class="social">
+                        <a href="#"><i class="fab fa-facebook" style="color:var(--blue)"></i></a>
+                        <a href="#"><i class="fab fa-twitter"  style="color:var(--skyblue)"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"  style="color:var(--dark-pink)"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"  style="color:var(--light-blue)"></i></a>
+                    </div>
+                 </div>
+
+                 <div class="contact-info">
+                    <div class="row">
+                         <div class="icon">
+                            <i class="fa fa-phone"  style="color:var(--light-purple)"></i>
+                         </div>
+                         <div class="content">
+                            <span>Telefone</span>
+                            <h5>+55(19)999-6767</h5>
+                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="icon">
+                           <i class="fa fa-envelope-open"  style="color:var(--light-purple)"></i>
+                        </div>
+                        <div class="content">
+                           <span>Email</span>
+                           <h5>exemplo@gmail.com</h5>
+                        </div>
+                   </div>
+    
+                   <div class="row">
+                    <div class="icon">
+                       <i class="fa fa-map-marker"  style="color:var(--light-purple)"></i>
+                    </div>
+                    <div class="content">
+                       <span>País</span>
+                       <h5>Brasil</h5>
+                    </div>
+                 </div>
+
+            </div>
             
-            <div class="social_icons">
-                <div class="icon"><i class="uil uil-instagram"></i></div>
-                <div class="icon"><i class="uil uil-linkedin-alt"></i></div>
-                <div class="icon"><i class="uil uil-dribbble"></i></div>
-                <div class="icon"><i class="uil uil-github-alt"></i></div>
             </div>
-          </div>
-          <div class="featured-image">
-            <div class="image">
-                <img src="./assets/img/avatar1.png" alt="avatar">
-            </div>
-          </div>
-          <div class="scroll-icon-box">
-            <a href="#about" class="scroll-btn">
-                <i class="uil uil-mouse-alt"></i>
-                <p>Scroll Mouse</p>
-            </a>
-          </div>
+       </div>
 
-       </section>
+       <div class="sobre">
+           <h1>Sobre</h1>
 
-       <section class="section" id="about">
-          <div class="top-header">
-            <h1>Sobre Mim</h1>
-          </div>
-          <div class="row">
-            <div class="col">
-                <div class="about-info">
-                    <h3>Introdução</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo atque quis voluptatibus accusamus esse nihil, repellendus perferendis quod exercitationem pariatur perspiciatis? Rem vitae expedita quidem voluptatem veniam quae unde nisi?
-                    </p>
-                    
+           <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad doloribus sed sunt cum molestiae. Exercitationem ad quia et obcaecati magnam ab at odio adipisci, dolores porro totam, eum facilis natus?
+          </p>
+
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis velit est, accusamus magni consequatur beatae minima voluptate dignissimos excepturi, cumque eum aliquid saepe distinctio obcaecati provident optio, fugit architecto? Beatae.
+          </p>
+          <h2>Skills !!!</h2>
+          <div class="skill">
+             <div class="skillbox">
+                 <div class="icon">
+                    <img src="{% static '/img/ui.svg' %}" alt="">
+                 </div>
+                 <div class="desc">
+                    <h3>UI/UX Designer</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
+                 </div>
+                 <button class="sobre-btn" id="close-btn">
+                  <i class="fas fa-times"></i> Fechar
+
+             </div>
+
+             <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/app.svg' %}" alt="">
+                </div>
+                <div class="desc">
+                   <h3>Desenvolvedor Mobile</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
                 </div>
             </div>
-            <div class="col">
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Frontend</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>Bootstrap</span>
-                        <span>JavaScript</span>
-                        <span>Vue</span>
-                        <span>React</span>
-                        <span>Angular</span>
-                    </div>
+
+            <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/api.svg' %}" alt="">
                 </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Backend</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>PHP</span>
-                        <span>JAVA</span>
-                        <span>Python</span>
-                        <span>C++</span>
-                    </div>
+                <div class="desc">
+                   <h3>Desenvolvedor API</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
                 </div>
-                <div class="skills-box">
-                    <div class="skills-header">
-                        <h3>Database</h3>
-                    </div>
-                    <div class="skills-list">
-                        <span>MySQL</span>
-                        <span>PostgreSQL</span>
-                        <span>MongoDB</span>
-                    </div>
+            </div>
+
+            <div class="skillbox">
+                <div class="icon">
+                   <img src="{% static '/img/web.svg' %}" alt="">
+                </div>
+                <div class="desc">
+                   <h3>Desenvolvedor Web</h3>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam euismod volutpat.</p>
                 </div>
             </div>
           </div>
-       </section>
-
-       
-        <div class="bottom-footer">
-            <p>© Copyright 2024. Todos os direitos reservados @luizsimi.</p>
-        </div>
-    </footer>
-
-    </div>
-
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    
-    <script src="assets/js/app.js"></script>
-
-
-    <script>
-        function logoutUser() {
-            // Aqui você pode adicionar qualquer lógica de logout, se necessário,
-            // como limpar tokens, sessões, etc.
-    
-            // Redireciona para a tela de login
-            window.location.href = '/login'; // Substitua '/login' pela URL correta da sua tela de login.
-        }
-    </script>
-
-<script>
-    document.getElementById('backBtn').addEventListener('click', function() {
-      window.location.href = 'dashboard.html'; // Redireciona para dashboard.html
-    });
+       </div>
+   </div>
+   <script>
+      document.getElementById("close-btn").addEventListener("click", function() {
+          window.location.href = "dashboard.html";
+      });
   </script>
-  
-  
 </body>
 </html>
