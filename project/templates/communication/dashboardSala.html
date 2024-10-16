@@ -1,18 +1,77 @@
-<div>
-    <h2>Chat - Sala {{ room.salaId }}</h2>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .messages {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        #chat-message-input {
+            width: 80%;
+            padding: 10px;
+        }
+        #chat-message-submit {
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat Sala: {{ room.salaId }}</h1>
+    
     <div class="messages">
         {% for message in messages %}
-        <div class="message">
-            <strong>{{ message }}</strong>
+        <div>
+            <strong>{{ message.sender }}:</strong> {{ message.content }} <em>{{ message.timestamp }}</em>
         </div>
         {% endfor %}
     </div>
 
-    <!-- Formulário para envio de mensagens -->
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Renderizar o formulário -->
-        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
-    </form>
-</div>
+    <input type="text" id="chat-message-input" placeholder="Digite sua mensagem..." />
+    <button id="chat-message-submit">Enviar</button>
+
+    <script>
+        const salaId = "{{ room.salaId }}"; 
+        const wsUrl = `ws://${window.location.hostname}:8001/ws/chat/${salaId}/`;
+        const chatSocket = new WebSocket(wsUrl);
+
+        chatSocket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const message = data['mensagem'];
+            const sender = data['remetente'];
+
+            document.querySelector('.messages').innerHTML += `<div><strong>${sender}:</strong> ${message}</div>`;
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('WebSocket fechado inesperadamente');
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInput = document.querySelector('#chat-message-input');
+            const message = messageInput.value;
+            
+            
+            chatSocket.send(JSON.stringify({
+                'mensagem': message,
+                'remetente': "{{ request.user.cpf }}"
+            }));
+            messageInput.value = '';
+        };
+    </script>
+    
+</body>
+</html>
