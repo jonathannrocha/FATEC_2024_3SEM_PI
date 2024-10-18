@@ -11,13 +11,13 @@ class UserForm(forms.ModelForm):
          
 
         widgets = {
-            'nome': forms.TextInput( attrs={'placeholder': 'nome completo'}),
-            'cpf': forms.TextInput( attrs={'placeholder': 'cpf'}),
-            'gmail': forms.EmailInput( attrs={ 'placeholder': 'emaiil'}),
-            'telefone': forms.NumberInput( attrs={ 'placeholder': 'Telefone'}),
+            'nome': forms.TextInput( attrs={'placeholder': 'Nome completo'}),
+            'cpf': forms.TextInput( attrs={'placeholder': 'Seu CPF'}),
+            'gmail': forms.EmailInput( attrs={ 'placeholder': 'E-maiil'}),
+            'telefone': forms.TextInput( attrs={ 'placeholder': 'Telefone'}),
             'dataNascimento': forms.DateInput(attrs={'type': 'date'}),
-            'typeUser': forms.Select( ),
-            'senha': forms.PasswordInput( attrs={'placeholder': 'senha'})
+            'typeUser': forms.Select( attrs=({'class': 'input-square'}) ),
+            'senha': forms.PasswordInput( attrs={'placeholder': 'senha', 'type': 'password'})
         }
 
    
