@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from mongoengine import Document, StringField, ListField, DictField, DateTimeField
+from mongoengine import Document, StringField, ListField, DictField, IntField
 
 class UserManager(BaseUserManager):
     def create_user(self, cpf, senha=None, **extra_fields):
@@ -26,18 +26,17 @@ class UserManager(BaseUserManager):
             raise ValueError('O superusuário precisa ter is_superuser=True.')
         return self.create_user(cpf, senha, **extra_fields)
 
-
 class User(AbstractBaseUser, PermissionsMixin):
+    iduser = models.PositiveIntegerField(unique=True, null=True, blank=True)
     nome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=11, unique=True, primary_key=True)
     gmail = models.EmailField(max_length=100, unique=True)
     telefone = models.CharField(max_length=15)
     dataNascimento = models.DateField(null=True, blank=True)
     typeUser = models.CharField(max_length=10, choices=[
-        # ('admin', 'Admin'),
         ('Mentor', 'Mentor'),
         ('Mentorado', 'Mentorado')
-    ], default='mentorado')
+    ], default='Mentorado')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -48,10 +47,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.cpf
-    
+
 class Perfil(Document):
+    iduser = IntField(required=True, unique=True)
     nome = StringField(max_length=255)
-    cpf = StringField(required=True,unique=True)
     sobre = StringField(max_length=255)
     certificacoes = ListField(StringField(max_length=221))
     habilidades = ListField(StringField(max_length=211))
