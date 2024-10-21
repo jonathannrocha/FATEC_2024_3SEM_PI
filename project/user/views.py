@@ -42,7 +42,8 @@ def cadastrarUsuario(request):
             user.save()
 
             perfil = Perfil(
-                cpf=user.cpf,
+                iduser=user.iduser,
+                nome=user.nome,
                 sobre='',
                 nivelExperiencia='',
                 certificacoes=[],
